@@ -1,41 +1,77 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: sans-serif;
-}
-
-.chat-header {
-    padding: 10px;
-    background-color: salmon;
-}
-
-.chat-content {
-    margin: auto;
-    overflow-y: auto;
-    padding: 12px 20px;
+body {
     display: flex;
-    flex-direction: column; 
-    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #0b0941;
+    color: rgb(255, 255, 255);
+    font-family: 'Trebuchet MS'; 
 }
 
-.message {
-    display: flex;
-    align-items: flex-end;
-    margin: 12px 0;
-}
-
-.bot-message .message-content {
-    max-width: 70%;
-    padding: 12px 16px;
-    background-color: whitesmoke;
-    border-radius: 16px;
-}
-
-.message .message-avatar {
-    font-size: 16px;
-    margin-right: 12px;
-    color: whitesmoke;
-    background-color: salmon;
-    padding: 10px 8px;
+img {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
+
+h2 {
+    font-size: 18px;
+} 
+
+a {
+    background-color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    margin: 10px;
+    color: #0b0941;
+    text-decoration: none;
+    width: 50%;
+}
+
+li {
+    text-align: center;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.info {
+    padding-bottom: 7px;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    padding-left: 0px !important;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .card:hover {
+    background-color: #ccc;
+  }
+  

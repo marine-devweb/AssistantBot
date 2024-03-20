@@ -1,34 +1,32 @@
-const question = [
-    "Puis-je vous aider ?"
-];
-// Contenu de la conversation
-const chatContent = document.querySelector(".chat-content");
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes/routes');
 
-// Fonction pour ajouter les messages du bot à la conversation
-function appendBotMessage(messageText) {
-    const avatar = document.createElement("div");
-    avatar.className = "fas fa-robot message-avatar";
-    
-    // Création de l'élément div pour le message et le contenu
-    const messageDiv = document.createElement("div");
-    messageDiv.className = "message bot-message";
-    const contentDiv = document.createElement("div");
-    contentDiv.className = "message-content";
-    contentDiv.textContent = messageText;
+require('dotenv').config(); // Charger les variables d'environnement
 
-    // Ajout de l'avatar et du contenu du message à l'élément div
-    messageDiv.append(avatar, contentDiv);
-    // Ajout du message à l'élément div
-    chatContent.appendChild(messageDiv);    
-}
+const app = express();
+const port = process.env.PORT || 5000; // Utiliser le port spécifié dans le fichier .env ou le port 5000 par défaut
 
-// Appel de la fonction avec les messages et mise en place d'un délai
-appendBotMessage("Bonjour, je m'appelle Assistant Bot.");
-setTimeout(function() {
-    appendBotMessage("Je suis votre assistant personnel");
-}, 6000);
+// Connexion à la base de données
+mongoose.connect(process.env.DB_URI, {
+  // Utiliser les options recommandées
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("Connected to MongoDB");
+})
+.catch(err => {
+  console.error("Error connecting to MongoDB:", err.message);
+  process.exit(1); // Quitter le processus avec un code d'erreur
+});
 
-// Appel de la fonction et récupération d'une question dans le tableau de la variable question
-setTimeout(function() {
-    appendBotMessage(question[0]);
-}, 9500);
+app.set('view engine', 'ejs'); // Configuration du moteur de template ejs
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use('/', routes);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

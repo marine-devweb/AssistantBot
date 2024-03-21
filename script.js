@@ -14,10 +14,10 @@ mongoose.connect(process.env.DB_URI, {
   useUnifiedTopology: true
 })
 .then(() => {
-  console.log("Connected to MongoDB");
+  console.log("Connecté à MongoDB");
 })
 .catch(err => {
-  console.error("Error connecting to MongoDB:", err.message);
+  console.error("Erreur de connexion à MongoDB:", err.message);
   process.exit(1); // Quitter le processus avec un code d'erreur
 });
 
